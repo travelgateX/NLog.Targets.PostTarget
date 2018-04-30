@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net462</TargetFrameworks>
+    <Description>An NLog target that send logs by post.</Description>
+    <PackageLicenseUrl>https://github.com/XML-Travelgate/NLog.Targets.PostTarget/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/XML-Travelgate/NLog.Targets.PostTarget.git</PackageProjectUrl>
+    <PackageTags>NLog logging target to send logs with post </PackageTags>
+    <Authors>XMLTravelgate</Authors>
+    <Company>XMLTravelgate</Company>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <AssemblyName>NLog.Targets.PostTarget</AssemblyName>
+    <RootNamespace>NLog.Targets.PostTarget</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ExpandoObjectExtensions.cs" />
+    <Compile Remove="Field.cs" />
+    <Compile Remove="IPostTarget.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.5.0" />
+  </ItemGroup>
+
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="System.Net.Http" Version="4.0.0" />
+  </ItemGroup>
+
+</Project>
