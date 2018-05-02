@@ -102,7 +102,7 @@ namespace NLog.Targets.PostTarget
 
             foreach (var ev in logEvents)
             {
-                sb.AppendLine(ev.LogEvent.Message);
+                sb.AppendLine(Layout.Render(ev.LogEvent));
             }
 
             return sb.ToString();
