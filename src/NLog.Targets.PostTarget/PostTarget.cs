@@ -28,6 +28,8 @@ namespace NLog.Targets.PostTarget
 
         public bool KeepAlive { get; set; } = false;
 
+        public int Timeout { get; set; } = 3;
+
 
         public PostTarget()
         {
@@ -38,6 +40,7 @@ namespace NLog.Targets.PostTarget
         {
             base.InitializeTarget();
             _client = new HttpClient();
+            _client.Timeout = TimeSpan.FromSeconds(Timeout);
         }
 
         protected override void Write(AsyncLogEventInfo logEvent)

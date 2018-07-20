@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net462</TargetFrameworks>
+    <TargetFrameworks>net462</TargetFrameworks>
     <Description>An NLog target that send logs by post.</Description>
     <PackageLicenseUrl>https://github.com/XML-Travelgate/NLog.Targets.PostTarget/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/XML-Travelgate/NLog.Targets.PostTarget.git</PackageProjectUrl>
@@ -21,14 +21,6 @@
 
   <ItemGroup>
     <PackageReference Include="NLog" Version="4.5.0" />
-  </ItemGroup>
-
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
