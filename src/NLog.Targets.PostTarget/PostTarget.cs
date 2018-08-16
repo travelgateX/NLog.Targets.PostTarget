@@ -4,6 +4,7 @@ using NLog.Common;
 using System.Net.Http;
 using System.Text;
 using System;
+using System.Threading.Tasks;
 
 namespace NLog.Targets.PostTarget
 {
@@ -59,7 +60,7 @@ namespace NLog.Targets.PostTarget
             {
                 var payload = FormPayload(logEvents);
 
-                HttpResponseMessage result;
+                Task<HttpResponseMessage> result;
 
                 var httpContent = new StringContent(payload, System.Text.Encoding.GetEncoding(Encoding), ContentType);
                 if (KeepAlive)
@@ -69,17 +70,19 @@ namespace NLog.Targets.PostTarget
 
                 if (AcceptEncoding != "none")
                 { 
-                    result = await _client.PostAsync(Uri, new CompressedContent(httpContent, AcceptEncoding));
+                    result = _client.PostAsync(Uri, new CompressedContent(httpContent, AcceptEncoding));
                 }
                 else
                 {
-                    result = await _client.PostAsync(Uri, httpContent);
+                    result = _client.PostAsync(Uri, httpContent);
                 }
 
-                if (result.StatusCode != System.Net.HttpStatusCode.OK)
+                await result.ContinueWith(x => { });
+
+                if (result.Result != null && result.Result.StatusCode != System.Net.HttpStatusCode.OK)
                 {
                     var errorMessage = "Error sending post";
-                    InternalLogger.Error($"Failed to send log messages to PostTarget: status={result.StatusCode}, message=\"{errorMessage}\"");
+                    InternalLogger.Error($"Failed to send log messages to PostTarget: status={result.Result.StatusCode}, message=\"{errorMessage}\"");
                     InternalLogger.Trace($"Failed to send log messages to PostTarget: result={result}");
                 }
 
