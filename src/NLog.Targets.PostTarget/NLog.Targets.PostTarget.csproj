@@ -11,21 +11,17 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <AssemblyName>NLog.Targets.PostTarget</AssemblyName>
     <RootNamespace>NLog.Targets.PostTarget</RootNamespace>
+    <iconUrl>https://www.xmltravelgate.com/static/logox30_da95d128-f8a7-4e38-97b9-52fe300eee66.png/</iconUrl>
   </PropertyGroup>
 
+  
   <ItemGroup>
-    <Compile Remove="ExpandoObjectExtensions.cs" />
-    <Compile Remove="Field.cs" />
-    <Compile Remove="IPostTarget.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="NLog" Version="4.5.0" />
+    <PackageReference Include="NLog" Version="4.5.10" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-    <PackageReference Include="System.Net.Http" Version="4.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="System.Net.Http" Version="4.3.1" />
   </ItemGroup>
 
 </Project>
